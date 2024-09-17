@@ -1,5 +1,11 @@
 <script setup>
 import logo from "@/assets/img/logo.png";
+import { RouterLink, useRoute } from "vue-router";
+
+const isActiveLink = (routePath) => {
+  const route = useRoute();
+  return route.path === routePath;
+};
 </script>
 
 <template>
@@ -10,38 +16,46 @@ import logo from "@/assets/img/logo.png";
           class="flex flex-1 items-center justify-center md:items-stretch md:justify-start"
         >
           <!-- Logo -->
-          <a class="flex flex-shrink-0 items-center mr-4" href="index.html">
+          <RouterLink class="flex flex-shrink-0 items-center mr-4" to="/">
             <img class="h-10 w-auto" :src="logo" alt="Vue Jobs" />
             <span class="hidden md:block text-white text-2xl font-bold ml-2"
               >StartUp Compass</span
             >
-          </a>
+          </RouterLink>
           <div class="md:ml-auto">
             <div class="flex space-x-2">
-              <a
-                href="index.html"
-                class="text-white bg-purple-700 hover:bg-violet-900 hover:text-white rounded-md px-3 py-2"
-                >Home</a
+              <RouterLink
+                to="/"
+                :class="[
+                  isActiveLink('/')
+                    ? 'bg-violet-900'
+                    : 'hover:bg-violet-900 hover:text-white',
+                  'text-white',
+                  'px-3',
+                  'py-2',
+                  'rounde-md',
+                ]"
+                >Home</RouterLink
               >
-              <a
-                href="about.html"
+              <RouterLink
+                to="/about"
                 class="text-white hover:bg-violet-900 hover:text-white rounded-md px-3 py-2"
-                >About</a
+                >About</RouterLink
               >
-              <a
-                href="pricing.html"
+              <RouterLink
+                to="/jobs"
                 class="text-white hover:bg-violet-900 hover:text-white rounded-md px-3 py-2"
-                >Pricing</a
+                >Pricing</RouterLink
               >
-              <a
-                href="log-in.html"
+              <RouterLink
+                to="/log-in"
                 class="text-white hover:bg-violet-900 hover:text-white rounded-md px-3 py-2"
-                >Log-in</a
+                >Log-in</RouterLink
               >
-              <a
-                href="sign-up.html"
+              <RouterLink
+                to="/sign-up"
                 class="text-white hover:bg-violet-900 hover:text-white rounded-md px-3 py-2"
-                >Sign-up</a
+                >Sign-up</RouterLink
               >
             </div>
           </div>
